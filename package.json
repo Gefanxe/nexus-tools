@@ -1,0 +1,29 @@
+{
+  "name": "nexus-tools",
+  "version": "1.0.0",
+  "scripts": {
+    "env:init": "cross-env PKG_CACHE_PATH=.pkg-cache",
+    "dev:downPkg": "cross-env NODE_ENV=test node src/downPkg.cjs",
+    "dev:uploadPkg": "cross-env NODE_ENV=test node src/uploadPkg.cjs",
+    "build:downPkg": "ncc build src/downPkg.cjs -m -o dist/downPkg",
+    "build:uploadPkg": "ncc build src/uploadPkg.cjs -m -o dist/uploadPkg",
+    "build:downPkgExe": "pkg -t node18-win dist/downPkg/index.cjs -o exec/downPkg.exe",
+    "build:uploadPkgExe": "pkg -t node18-win dist/uploadPkg/index.cjs -o exec/uploadPkg.exe",
+    "build:ncc": "npm run build:downPkg && npm run build:uploadPkg",
+    "build:pkg": "npm run build:downPkgExe && npm run build:uploadPkgExe"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "move-file": "^2.1.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1",
+    "cross-env": "^7.0.3",
+    "pkg": "^5.8.1"
+  }
+}
